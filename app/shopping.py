@@ -4,37 +4,41 @@ from pandas import read_csv
 
 def format_usd(my_price):
     '''
-    This is a docstring!
-    This function will change a price into USD formatting.
+    Formats a number as USD with dollar sign and two decimals. 
+   
+    Params my_price is a number (int or float) that we want to format. 
+   
+    Examples: format_usd(10)
     '''
     return f"${my_price:,.2f}"
 
+if __name__ == "__main__":-
 
-# READ INVENTORY OF PRODUCTS
+READ INVENTORY OF PRODUCTS
 
-products_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "products.csv")
-products_df = read_csv(products_filepath)
-products = products_df.to_dict("records")
+oducts_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "products.csv")
+oducts_df = read_csv(products_filepath)
+oducts = products_df.to_dict("records")
 
-# CAPTURE PRODUCT SELECTIONS
+CAPTURE PRODUCT SELECTIONS
 
-selected_products = []
-while True:
-    selected_id = input("Please select a product identifier: ")
-    if selected_id.upper() == "DONE":
-        break
-    else:
-        matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-        if any(matching_products):
-            selected_products.append(matching_products[0])
-        else:
-            print("OOPS, Couldn't find that product. Please try again.")
+lected_products = []
+ile True:
+  selected_id = input("Please select a product identifier: ")
+  if selected_id.upper() == "DONE":
+      break
+  else:
+      matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
+      if any(matching_products):
+          selected_products.append(matching_products[0])
+      else:
+          print("OOPS, Couldn't find that product. Please try again.")
 
-checkout_at = datetime.now()
+eckout_at = datetime.now()
 
-subtotal = sum([float(p["price"]) for p in selected_products])
+btotal = sum([float(p["price"]) for p in selected_products])
 
-# PRINT RECEIPT
+ PRINT RECEIPT
 
 print("---------")
 print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%M-%d %H:%m:%S")))
