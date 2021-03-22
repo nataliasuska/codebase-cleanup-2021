@@ -3,6 +3,10 @@ from datetime import datetime
 from pandas import read_csv
 
 def format_usd(my_price):
+    '''
+    This is a docstring!
+    This function will change a price into USD formatting.
+    '''
     return f"${my_price:,.2f}"
 
 
