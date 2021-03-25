@@ -6,6 +6,12 @@ from random import choice
 #
 
 choices = ['rock', 'paper', 'scissors']
+
+if __name__ == '__main__':
+
+def determine_winner(p1, p2):
+    return "rock"
+
 u = input(f"Please choose one of {choices}: ").lower()
 print("USER CHOICE:", u)
 if u not in choices:
