@@ -11,16 +11,28 @@ def format_usd(my_price):
     return f"${my_price:,.2f}"
 
 
-# Prevent all of the app code from being imported
+#this part before if __name__ section is from https://github.com/s2t2/codebase-cleanup-2021/pull/5/commits/26b96b5ca7ac0217a5c71e9c0f85578af3c38d03
+def lookup_product(product_id, all_products):
+    """
+    Params :
+        product_id (str) like "8"
+        all_products (list of dict) each dict should have "id", "name", "department", "aisle", and "price" attributes
+    """
+    matching_products = [p for p in all_products if str(p["id"]) == str(product_id)]
+    if any(matching_products):
+        return matching_products[0]
+    else:
+        return None
+
+
+# Prevent all of the app code from being - this part done in class
 # But still be able to run it from the command line:
 if __name__ == "__main__":
-
 
     #READ INVENTORY OF PRODUCTS
     products_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "products.csv")
     products_df = read_csv(products_filepath)
     products = products_df.to_dict("records")
-
 
     #CAPTURE PRODUCT SELECTIONS
     selected_products = []
@@ -29,17 +41,16 @@ if __name__ == "__main__":
       if selected_id.upper() == "DONE":
           break
       else:
-          matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
-          if any(matching_products):
-              selected_products.append(matching_products[0])
-          else:
-              print("OOPS, Couldn't find that product. Please try again.")
+         matching_product = lookup_product(selected_id, products)
+         if matching_product:
+             selected_products.append(matching_product)
+         else:
+             print("OOPS, Couldn't find that product. Please try again.")
 
     checkout_at = datetime.now()
     subtotal = sum([float(p["price"]) for p in selected_products])
     
-    
-    # PRINT RECEIPT
+        # PRINT RECEIPT
     print("---------")
     print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%M-%d %H:%m:%S")))
     print("---------")
@@ -54,7 +65,6 @@ if __name__ == "__main__":
     print("---------")
     print("THANK YOU! PLEASE COME AGAIN SOON!")
     print("---------")
-        
         
     # WRITE RECEIPT TO FILE
     receipt_id = checkout_at.strftime('%Y-%M-%d-%H-%m-%S')
