@@ -1,4 +1,4 @@
-
+#does code climate work?? test
 from random import choice
 
 choices = ["rock", "paper", "scissors"]
@@ -52,6 +52,7 @@ if __name__ == '__main__':
         print("Sorry, the computer won.")
     elif winner == None:
         print("It's a tie!")
+
 
 #   if u == c:
 #       print("It's a tie!")
