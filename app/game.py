@@ -47,11 +47,12 @@ if __name__ == '__main__':
     # DETERMINATION OF WINNER
     winner = determine_winner(u, c)
     if winner == u:
-        print("YOU WON!")
+        print("YOU WON! Congrats!!")
     elif winner == c:
-        print("COMPUTER WON!")
+        print("Sorry, the computer won.")
     elif winner == None:
-        print("TIE!")
+        print("It's a tie!")
+
 
 #   if u == c:
 #       print("It's a tie!")
