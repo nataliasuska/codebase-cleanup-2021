@@ -5,23 +5,21 @@ from pandas import read_csv
 def format_usd(my_price):
     '''
     Formats a number as USD with dollar sign and two decimals. 
-   
-    Params my_price is a number (int or float) that we want to format. 
-   
+    Params: my_price is a number (int or float) that we want to format. 
     Examples: format_usd(10)
     '''
     return f"${my_price:,.2f}"
 
 #if __name__ == "__main__":-
 
-#READ INVENTORY OF PRODUCTS
 
+#READ INVENTORY OF PRODUCTS
 products_filepath = os.path.join(os.path.dirname(__file__), "..", "data", "products.csv")
 products_df = read_csv(products_filepath)
 products = products_df.to_dict("records")
 
-#CAPTURE PRODUCT SELECTIONS
 
+#CAPTURE PRODUCT SELECTIONS
 selected_products = []
 while True:
   selected_id = input("Please select a product identifier: ")
@@ -35,14 +33,14 @@ while True:
           print("OOPS, Couldn't find that product. Please try again.")
 
 checkout_at = datetime.now()
-
 subtotal = sum([float(p["price"]) for p in selected_products])
 
-# PRINT RECEIPT
 
+# PRINT RECEIPT
 print("---------")
 print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%M-%d %H:%m:%S")))
 print("---------")
+
 for p in selected_products:
     print("SELECTED PRODUCT: " + p["name"] + "   " + format_usd(p["price"]))
 
@@ -54,8 +52,8 @@ print("---------")
 print("THANK YOU! PLEASE COME AGAIN SOON!")
 print("---------")
 
-# WRITE RECEIPT TO FILE
 
+# WRITE RECEIPT TO FILE
 receipt_id = checkout_at.strftime('%Y-%M-%d-%H-%m-%S')
 receipt_filepath = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{receipt_id}.txt")
 
