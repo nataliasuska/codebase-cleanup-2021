@@ -10,12 +10,12 @@ def determine_winner(p1, p2):
 
 #if __name__ == '__main__':
 
-
 u = input(f"Please choose one of {choices}: ").lower()
 print("USER CHOICE:", u)
 if u not in choices:
     print("OOPS, TRY AGAIN")
     exit()
+
 
 # COMPUTER SELECTION
 c = choice(choices)
