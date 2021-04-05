@@ -67,7 +67,7 @@ if __name__ == "__main__":
     print("---------")
         
     # WRITE RECEIPT TO FILE
-    receipt_id = checkout_at.strftime('%Y-%M-%d %H:%m:%S')
+    receipt_id = checkout_at.strftime('%Y-%M-%d-%H-%m-%S')
     receipt_filepath = os.path.join(os.path.dirname(__file__), "..", "receipts", f"{receipt_id}.txt")
     
     with open(receipt_filepath, "w") as receipt_file:
