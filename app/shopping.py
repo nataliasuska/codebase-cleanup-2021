@@ -50,7 +50,7 @@ if __name__ == "__main__":
     checkout_at = datetime.now()
     subtotal = sum([float(p["price"]) for p in selected_products])
     
-        # PRINT RECEIPT
+    # PRINT RECEIPT
     print("---------")
     print("CHECKOUT AT: " + str(checkout_at.strftime("%Y-%M-%d %H:%m:%S")))
     print("---------")
